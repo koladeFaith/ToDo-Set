@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="todo" class="hidden bg-white p-6 rounded shadow-md w-96">
+      <h1 class="text-2xl font-bold mb-4 text-center">My Todo List</h1>
+      <div class="flex mb-4">
+        <input
+          id="taskInput"
+          type="text"
+          placeholder="New Task"
+          class="flex-1 p-2 border rounded-l" />
+        <button
+          onclick="addTask()"
+          class="bg-green-500 text-white px-4 rounded-r">
+          Add
+        </button>
+      </div>
+      <ul id="taskList" class="list-disc pl-5"></ul>
+      <button
+        onclick="logout()"
+        class="mt-4 w-full bg-red-500 text-white py-2 rounded">
+        Logout
+      </button>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

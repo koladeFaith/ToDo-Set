@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App with Auth</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center h-screen mx-4">
+    <div
+      id="auth"
+      class="bg-white p-6 rounded shadow-md w-100 rounded-lg shadow-lg">
+      <h1 class="text-2xl font-bold mb-4 text-center text-orange-400">
+        ToDo App / Sign In
+      </h1>
+      <input
+        id="email"
+        type="text"
+        placeholder="Email"
+        class="w-full mb-2 p-2 border rounded bg-gray-100" />
+      <input
+        id="password"
+        type="password"
+        placeholder="Password"
+        class="w-full mb-2 p-2 border rounded bg-gray-100" />
+      <button
+        onclick="signin()"
+        id="sub"
+        class="w-full bg-orange-500 text-gray-100 py-2 rounded mb-2">
+        Sign In
+      </button>
+      <p class="pt-1">
+        Don't have an account?
+        <a href="/index.html" class="text-blue-600">Sign Up</a>
+      </p>
+    </div>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
