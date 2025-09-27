@@ -113,7 +113,16 @@ function addTask() {
     const task = taskInput.value.trim();
     if (!task) return;
 
-    const userData = JSON.parse(localStorage.getItem(`user_${currentUser}`));
+    const userDataRaw = localStorage.getItem(`user_${currentUser}`);
+    if (!userDataRaw) {
+        toast("User data not found. Please sign in again.", "red", "#fff");
+        return;
+    }
+    const userData = JSON.parse(userDataRaw);
+    if (!userData.todos) {
+        toast("User data corrupted. Please sign in again.", "red", "#fff");
+        return;
+    }
     userData.todos.push(task);
     localStorage.setItem(`user_${currentUser}`, JSON.stringify(userData));
 
