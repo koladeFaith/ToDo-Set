@@ -3,30 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Todo App</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <div id="todo" class="hidden bg-white p-6 rounded shadow-md w-96">
-      <h1 class="text-2xl font-bold mb-4 text-center">My Todo List</h1>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div
+      id="todo"
+      class="hidden bg-white p-6 rounded-2xl shadow-lg w-full max-w-md">
+      <!-- Header -->
+      <h1 class="text-3xl font-extrabold mb-6 text-center text-gray-800">
+        ✅ My Todo Dashboard
+      </h1>
+
+      <!-- Input Section -->
       <div class="flex mb-4">
         <input
           id="taskInput"
           type="text"
-          placeholder="New Task"
-          class="flex-1 p-2 border rounded-l" />
+          placeholder="Enter new task..."
+          class="flex-1 p-3 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
         <button
           onclick="addTask()"
-          class="bg-green-500 text-white px-4 rounded-r">
+          class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-r-lg transition">
           Add
         </button>
       </div>
-      <ul id="taskList" class="list-disc pl-5"></ul>
+
+      <!-- Task List -->
+      <ul id="taskList" class="space-y-3"></ul>
+
+      <!-- Logout Button -->
       <button
         onclick="logout()"
-        class="mt-4 w-full bg-red-500 text-white py-2 rounded">
+        class="mt-6 w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg transition">
         Logout
       </button>
     </div>
+
     <script src="script.js"></script>
   </body>
 </html>
