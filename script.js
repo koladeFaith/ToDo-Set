@@ -45,14 +45,15 @@ function signup() {
         users.add(email);
         localStorage.setItem("users", JSON.stringify([...users]));
         toast("Sign up successful😁", "#006400", "#fff");
-        localStorage.setItem(`user_${username}`, JSON.stringify({ email, todos: [] }));
+        localStorage.setItem(`user_${email}`, JSON.stringify({ email, password, todos: [] }));
         setTimeout(() => {
             window.location.href = "signin.html";
         }, 2000);
     }
-    username = ''
-    password = ''
-    email = ''
+    // Clear input fields only
+    document.getElementById("username").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
 }
 
 function signin() {
@@ -68,9 +69,10 @@ function signin() {
 
         return;
     }
-    const userData = JSON.parse(localStorage.getItem(`user_${email}`));
+    const userDataRaw = localStorage.getItem(`user_${email}`);
+    const userData = userDataRaw ? JSON.parse(userDataRaw) : null;
 
-    if (!userData || userData.email !== email || userData.password !== password) {
+    if (!userData) {
         toast("User not found!", "red", "#fff");
         sub.innerHTML = "...loading";
         setTimeout(() => {
@@ -78,22 +80,25 @@ function signin() {
         }, 1000);
         return;
     }
-    else {
-        const found = userData.has((email))
-        if (found) {
-            console.log(found);
-        }
-        else {
-            toast("Sign in successful😁", "#006400", "#fff");
-            setTimeout(() => {
-                window.location.href = "dashboard.html";
-            }, 2000);
-        }
+    // Check password
+    if (!userData.password || userData.password !== password) {
+        toast("Incorrect password!", "red", "#fff");
+        sub.innerHTML = "...loading";
+        setTimeout(() => {
+            sub.innerHTML = "Submit";
+        }, 1000);
+        return;
     }
-    document.getElementById("email").value = "";
-    document.getElementById("password").value = "";
-    currentUser = email;
-    showTodo();
+    else {    
+        toast("Sign in successful😁", "#006400", "#fff");
+        setTimeout(() => {
+            window.location.href = "dashboard.html";
+        }, 2000);
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+        currentUser = email;
+        showTodo();
+    }
 
 }
 
