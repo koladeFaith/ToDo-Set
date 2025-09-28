@@ -89,7 +89,7 @@ function signin() {
         }, 1000);
         return;
     }
-    else {    
+    else {
         toast("Sign in successful😁", "#006400", "#fff");
         setTimeout(() => {
             window.location.href = "dashboard.html";
@@ -97,6 +97,7 @@ function signin() {
         document.getElementById("email").value = "";
         document.getElementById("password").value = "";
         currentUser = email;
+        localStorage.setItem("currentUser", email);
         showTodo();
     }
 
@@ -113,19 +114,14 @@ function addTask() {
     const task = taskInput.value.trim();
     if (!task) return;
 
-    const userDataRaw = localStorage.getItem(`user_${currentUser}`);
-    if (!userDataRaw) {
-        toast("User data not found. Please sign in again.", "red", "#fff");
-        return;
-    }
-    const userData = JSON.parse(userDataRaw);
-    if (!userData.todos) {
-        toast("User data corrupted. Please sign in again.", "red", "#fff");
+    const userData = JSON.parse(localStorage.getItem(`user_${currentUser}`));
+    // Check for duplicate task
+    if (userData.todos.includes(task)) {
+        toast("Task already exists!", "red", "#fff");
         return;
     }
     userData.todos.push(task);
     localStorage.setItem(`user_${currentUser}`, JSON.stringify(userData));
-
     taskInput.value = "";
     loadTasks();
 }
