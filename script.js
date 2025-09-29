@@ -104,16 +104,17 @@ function signin() {
 }
 
 function showTodo() {
-    document.getElementById("todo").classList.remove("hidden");
+    // document.getElementById("todo").classList.remove("hidden");
     loadTasks();
 }
 
 function addTask() {
     const taskInput = document.getElementById("taskInput").value;
     if (!taskInput) {
-        toast("The fields input required!", "red", "#fff");
+        toast("Task input field not found!", "red", "#fff");
+        return;
     }
-    const task = taskInput.value.trim();
+    const task = taskInput.trim();
     if (!task) return;
 
     const userData = JSON.parse(localStorage.getItem(`user_${currentUser}`));
@@ -136,7 +137,7 @@ function loadTasks() {
     userData.todos.forEach((task, index) => {
         const li = document.createElement("li");
         li.textContent = task;
-        li.className = "flex justify-between items-center mb-2";
+        li.className = "flex bg-gray-200 rounded p-6 justify-between items-center";
 
         const btn = document.createElement("button");
         btn.textContent = "❌";
