@@ -15,7 +15,7 @@ const toast = (text, background, color) => {
     }).showToast();
 };
 const users = new Set(JSON.parse(localStorage.getItem("users")) || []);
-let currentUser = null;
+let currentUser = localStorage.getItem("currentUser") || null;
 
 function signup() {
     const username = document.getElementById("username").value.trim();
@@ -104,13 +104,15 @@ function signin() {
 }
 
 function showTodo() {
-    document.getElementById("auth").classList.add("hidden");
     document.getElementById("todo").classList.remove("hidden");
     loadTasks();
 }
 
 function addTask() {
-    const taskInput = document.getElementById("taskInput");
+    const taskInput = document.getElementById("taskInput").value;
+    if (!taskInput) {
+        toast("The fields input required!", "red", "#fff");
+    }
     const task = taskInput.value.trim();
     if (!task) return;
 
@@ -156,5 +158,4 @@ function deleteTask(index) {
 function logout() {
     currentUser = null;
     document.getElementById("todo").classList.add("hidden");
-    document.getElementById("auth").classList.remove("hidden");
 }
